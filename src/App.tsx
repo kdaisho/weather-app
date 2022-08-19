@@ -1,22 +1,22 @@
-import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
+function App(): JSX.Element {
   return (
     <div className="App">
-      <header className="App-header">
+      <header className='test'>
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
+        <p className='yoyo'>
           Edit <code>src/App.tsx</code> and save to reload.
+          <div className='value'>TESTING</div>
         </p>
         <a
-          className="App-link"
+          className='gu'
           href="https://reactjs.org"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          TEST
         </a>
       </header>
     </div>
