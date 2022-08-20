@@ -1,0 +1,10 @@
+.weather-app .header button {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 2rem;
+  text-transform: uppercase;
+}
+.weather-app .header button.is-active {
+  color: #5fb0e8;
+  font-weight: 600;
+}
