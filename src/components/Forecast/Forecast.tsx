@@ -4,6 +4,14 @@ import { extractByHour } from './utils'
 import weatherService from 'src/services/api'
 import './Forecast.css'
 
+import { Weather } from 'src/types'
+import {
+  BsFillCloudRainFill,
+  BsFillCloudsFill,
+  BsFillCloudSnowFill,
+  BsFillSunFill,
+} from 'react-icons/bs'
+
 const Forecast = (): JSX.Element => {
   const [forecast, setForecast] = useState<ForecastType>()
   const [loading, setLoading] = useState(false)
@@ -33,16 +41,30 @@ const Forecast = (): JSX.Element => {
     return <div>Something wrong</div>
   }
 
+  const renderWeatherIcon = (weather: string) => {
+    switch (weather) {
+      case Weather.Clear:
+        return <BsFillSunFill className='icon' />
+      case Weather.Clouds:
+        return <BsFillCloudsFill className='icon' />
+      case Weather.Rain:
+        return <BsFillCloudRainFill className='icon' />
+      case Weather.Snow:
+        return <BsFillCloudSnowFill className='icon' />
+      default:
+        return <BsFillCloudsFill className='icon' />
+    }
+  }
+
   return (
     <div className='forecast'>
       {Array.isArray(forecast) &&
         forecast.map(item => {
           return (
-            <div key={item.dt}>
-              <p>{item.day}</p>
-              <p>{item.weather[0].main}</p>
-              <p>{item.main.temp}</p>
-              <hr />
+            <div key={item.dt} className='each-day'>
+              <p className='day-of-week'>{item.day}</p>
+              {renderWeatherIcon(item.weather[0].main)}
+              <p className='temperature'>{Math.floor(item.main.temp)}&#176;</p>
             </div>
           )
         })}

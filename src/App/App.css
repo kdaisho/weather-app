@@ -1,11 +1,29 @@
 .weather-app {
   margin: 0 auto;
-  max-width: 767px;
+  max-width: 790px;
   padding: 2rem 1rem;
+  position: relative;
   width: 100%;
 }
-.weather-app h1 {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  font-size: 4rem;
+.weather-app .container {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border: 5px solid #fff;
+  margin-top: 2rem;
+}
+.weather-app .blue-background {
+  border-radius: inherit;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 5px;
+}
+.sample {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.25;
+  pointer-events: none;
+  z-index: 100;
 }

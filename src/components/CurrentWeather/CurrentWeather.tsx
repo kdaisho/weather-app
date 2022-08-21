@@ -1,6 +1,13 @@
 import { useEffect, useState } from 'react'
 import weatherService from 'src/services/api'
-import { CurrentWeatherType } from 'src/types'
+import { CurrentWeatherType, Weather } from 'src/types'
+import {
+  BsFillCloudRainFill,
+  BsFillCloudsFill,
+  BsFillCloudSnowFill,
+  BsFillSunFill,
+} from 'react-icons/bs'
+
 import './CurrentWeather.css'
 
 const CurrentWeather = (): JSX.Element => {
@@ -16,6 +23,21 @@ const CurrentWeather = (): JSX.Element => {
       .finally(() => setLoading(false))
   }, [])
 
+  const renderWeatherIcon = (weather: string) => {
+    switch (weather) {
+      case Weather.Clear:
+        return <BsFillSunFill className='icon' />
+      case Weather.Clouds:
+        return <BsFillCloudsFill className='icon' />
+      case Weather.Rain:
+        return <BsFillCloudRainFill className='icon' />
+      case Weather.Snow:
+        return <BsFillCloudSnowFill className='icon' />
+      default:
+        return <BsFillCloudsFill className='icon' />
+    }
+  }
+
   if (loading) {
     console.log('loading or no currentWeather', { loading, currentWeather })
     return <div>Loading...</div>
@@ -27,9 +49,15 @@ const CurrentWeather = (): JSX.Element => {
 
   return (
     <div className='current-weather'>
-      <div>
-        <p>{currentWeather.weather[0].main}</p>
-        <p>{currentWeather.main.temp}</p>
+      <h1>Today</h1>
+      <div className='info'>
+        {renderWeatherIcon(currentWeather.weather[0].main)}
+        <div className='temperature-weather'>
+          <p className='temperature'>
+            {Math.floor(currentWeather.main.temp)}&#176;
+          </p>
+          <p className='weather'>{currentWeather.weather[0].main}</p>
+        </div>
       </div>
     </div>
   )

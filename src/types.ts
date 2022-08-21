@@ -1,7 +1,7 @@
 import current from 'src/services/mock.ottawa.json'
 import fiveDays from 'src/services/mock.ottawa.5days.json'
 
-export type Weather = typeof current.weather[0]
+// export type Weather = typeof current.weather[0]
 
 export type CurrentWeatherType = typeof current
 
@@ -30,4 +30,11 @@ export enum Hour {
   Noon = '12:00:00',
   Afternoon = '15:00:00',
   Evening = '18:00:00',
+}
+
+export enum Weather {
+  Clear = 'Clear',
+  Clouds = 'Clouds',
+  Rain = 'Rain',
+  Snow = 'Snow',
 }

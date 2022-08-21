@@ -1,3 +1,59 @@
 .forecast {
-  border: 1px solid red;
+  align-items: center;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+.forecast .each-day {
+  align-items: center;
+  background: #edf6fb;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 1rem;
+  height: 210px;
+  justify-content: center;
+  padding-top: 10px;
+  width: calc(50% - 2.5px);
+}
+.forecast .each-day:nth-child(1),
+.forecast .each-day:nth-child(2) {
+  margin-bottom: 5px;
+}
+@media (min-width: 600px) {
+  .forecast .each-day:nth-child(1),
+  .forecast .each-day:nth-child(2) {
+    margin-bottom: 0;
+  }
+}
+.forecast .each-day:nth-child(3) {
+  border-radius: 0 0 0 12px;
+}
+.forecast .each-day:nth-child(4) {
+  border-radius: 0 0 12px 0;
+}
+.forecast .each-day .temperature {
+  font-size: 2.25rem;
+}
+@media (min-width: 600px) {
+  .forecast .each-day {
+    width: calc(25% - 5px);
+  }
+  .forecast .each-day:nth-child(1) {
+    border-radius: 0 0 0 12px;
+  }
+  .forecast .each-day:nth-child(4) {
+    border-radius: 0 0 12px 0;
+  }
+  .forecast .each-day:nth-child(3) {
+    border-radius: 0;
+  }
+}
+.forecast .day-of-week {
+  font-size: 1.5rem;
+}
+.forecast .icon {
+  font-size: 60px;
+}
+.forecast .icon * {
+  color: #2e4369;
 }

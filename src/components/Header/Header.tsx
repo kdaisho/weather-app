@@ -12,7 +12,11 @@ const Header = (): JSX.Element => {
     <div className='header'>
       {buttons.map(item => {
         return (
-          <button key={item.name} className={cn({ 'is-active': item.active })}>
+          <button
+            key={item.name}
+            className={cn({ 'is-active': item.active })}
+            title={item.name}
+          >
             {item.name}
           </button>
         )

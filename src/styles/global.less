@@ -1,0 +1,23 @@
+@import './variables';
+
+body {
+  height: 100vh;
+  background: @backgroundColor;
+  padding-top: 3rem;
+
+  * {
+    color: @fontColor;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+  }
+}
+
+button {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.temperature {
+  font-family: 'Teko', sans-serif;
+}
