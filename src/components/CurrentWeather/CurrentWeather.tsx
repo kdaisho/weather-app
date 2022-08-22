@@ -1,62 +1,40 @@
 import { useEffect, useState } from 'react'
+import cn from 'classnames'
+import toast from 'cogo-toast'
 import weatherService from 'src/services/api'
-import { CurrentWeatherType, Weather } from 'src/types'
-import {
-  BsFillCloudRainFill,
-  BsFillCloudsFill,
-  BsFillCloudSnowFill,
-  BsFillSunFill,
-} from 'react-icons/bs'
-
+import { City, CurrentWeatherType, Weather } from 'src/types'
+import { renderWeatherIcon, toastConfig } from 'src/utils'
 import './CurrentWeather.css'
 
-const CurrentWeather = (): JSX.Element => {
+const CurrentWeather = ({ city }: { city: City }): JSX.Element => {
   const [currentWeather, setCurrentWeather] = useState<CurrentWeatherType>()
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     setLoading(true)
     weatherService
-      .getCurrentWeatherByCityName('ottawa')
-      .then(data => setCurrentWeather(data))
-      .catch(err => console.error(err))
+      .getCurrentWeatherByCityName(city)
+      .then(data => {
+        console.log({ data })
+        setCurrentWeather(data)
+      })
+      .catch(err => {
+        toast.error(`${err.message} current weather`, toastConfig)
+      })
       .finally(() => setLoading(false))
-  }, [])
-
-  const renderWeatherIcon = (weather: string) => {
-    switch (weather) {
-      case Weather.Clear:
-        return <BsFillSunFill className='icon' />
-      case Weather.Clouds:
-        return <BsFillCloudsFill className='icon' />
-      case Weather.Rain:
-        return <BsFillCloudRainFill className='icon' />
-      case Weather.Snow:
-        return <BsFillCloudSnowFill className='icon' />
-      default:
-        return <BsFillCloudsFill className='icon' />
-    }
-  }
-
-  if (loading) {
-    console.log('loading or no currentWeather', { loading, currentWeather })
-    return <div>Loading...</div>
-  }
-
-  if (!loading && !currentWeather) {
-    return <div>Something wrong</div>
-  }
+  }, [city])
 
   return (
     <div className='current-weather'>
       <h1>Today</h1>
-      <div className='info'>
-        {renderWeatherIcon(currentWeather.weather[0].main)}
+      <div className={cn('info', { blur: loading })}>
+        {renderWeatherIcon(currentWeather?.weather[0].main as Weather)}
         <div className='temperature-weather'>
           <p className='temperature'>
-            {Math.floor(currentWeather.main.temp)}&#176;
+            {Math.floor(currentWeather?.main.temp as number) || '?'}
+            &#176;
           </p>
-          <p className='weather'>{currentWeather.weather[0].main}</p>
+          <p className='weather'>{currentWeather?.weather[0].main}</p>
         </div>
       </div>
     </div>

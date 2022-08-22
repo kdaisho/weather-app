@@ -15,6 +15,9 @@
   padding-top: 10px;
   width: calc(50% - 2.5px);
 }
+.forecast .each-day.blur {
+  filter: blur(1rem);
+}
 .forecast .each-day:nth-child(1),
 .forecast .each-day:nth-child(2) {
   margin-bottom: 5px;

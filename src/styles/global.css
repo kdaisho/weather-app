@@ -14,3 +14,13 @@ button:hover {
 .temperature {
   font-family: 'Teko', sans-serif;
 }
+.ct-toast svg {
+  display: none;
+}
+.ct-toast.ct-toast-error {
+  background: #f44336;
+}
+.ct-toast.ct-toast-error .ct-text {
+  color: #fff;
+  font-weight: bold;
+}

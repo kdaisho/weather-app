@@ -1,23 +1,24 @@
-import { City } from 'src/types'
+// import { City } from 'src/types'
 import cn from 'classnames'
+import { FunctionComponent } from 'react'
+import { Cities, City } from 'src/types'
 import './header.css'
 
-const Header = (): JSX.Element => {
-  const buttons = [
-    { name: City.Ottawa, active: true },
-    { name: City.Moscow, active: false },
-    { name: City.Tokyo, active: false },
-  ]
+const Header: FunctionComponent<{
+  cities: Cities
+  handleChangeCity: (name: City) => void
+}> = ({ cities, handleChangeCity }) => {
   return (
     <div className='header'>
-      {buttons.map(item => {
+      {cities.list.map(city => {
         return (
           <button
-            key={item.name}
-            className={cn({ 'is-active': item.active })}
-            title={item.name}
+            key={city.name}
+            className={cn({ 'is-active': cities.selected === city.name })}
+            onClick={() => handleChangeCity(city.name)}
+            title={city.name}
           >
-            {item.name}
+            {city.name}
           </button>
         )
       })}

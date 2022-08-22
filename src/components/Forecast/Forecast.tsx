@@ -1,67 +1,34 @@
-import { useEffect, useState } from 'react'
+import { FunctionComponent, useEffect, useState } from 'react'
+import toast from 'cogo-toast'
+import cn from 'classnames'
 import { City, DayCount, ForecastType } from 'src/types'
 import { extractByHour } from './utils'
 import weatherService from 'src/services/api'
+import { renderWeatherIcon, toastConfig } from 'src/utils'
 import './Forecast.css'
 
-import { Weather } from 'src/types'
-import {
-  BsFillCloudRainFill,
-  BsFillCloudsFill,
-  BsFillCloudSnowFill,
-  BsFillSunFill,
-} from 'react-icons/bs'
-
-const Forecast = (): JSX.Element => {
+const Forecast: FunctionComponent<{ city: City }> = ({ city }) => {
   const [forecast, setForecast] = useState<ForecastType>()
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     setLoading(true)
     weatherService
-      .getFiveDayThreeHourForecastByCityName(City.Ottawa)
+      .getFiveDayThreeHourForecastByCityName(city)
       .then(data => {
         const fourDays = data.list.filter(extractByHour).slice(0, DayCount.Four)
         setForecast(fourDays)
       })
-      .catch(err => console.error(err))
+      .catch(err => toast.error(`${err.message} forecast`, toastConfig))
       .finally(() => setLoading(false))
-  }, [])
-
-  useEffect(() => {
-    console.log({ forecast })
-  }, [forecast])
-
-  if (loading) {
-    console.log('loading or no forecast', { loading, forecast })
-    return <div>Loading...</div>
-  }
-
-  if (!loading && !forecast) {
-    return <div>Something wrong</div>
-  }
-
-  const renderWeatherIcon = (weather: string) => {
-    switch (weather) {
-      case Weather.Clear:
-        return <BsFillSunFill className='icon' />
-      case Weather.Clouds:
-        return <BsFillCloudsFill className='icon' />
-      case Weather.Rain:
-        return <BsFillCloudRainFill className='icon' />
-      case Weather.Snow:
-        return <BsFillCloudSnowFill className='icon' />
-      default:
-        return <BsFillCloudsFill className='icon' />
-    }
-  }
+  }, [city])
 
   return (
     <div className='forecast'>
       {Array.isArray(forecast) &&
         forecast.map(item => {
           return (
-            <div key={item.dt} className='each-day'>
+            <div key={item.dt} className={cn('each-day', { blur: loading })}>
               <p className='day-of-week'>{item.day}</p>
               {renderWeatherIcon(item.weather[0].main)}
               <p className='temperature'>{Math.floor(item.main.temp)}&#176;</p>
