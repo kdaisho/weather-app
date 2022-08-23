@@ -9,3 +9,4 @@
 - TypeSCript
 - Functional components
 - CSS Preprocessor (LESS)
+- Unit tests
