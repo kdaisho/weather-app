@@ -19,3 +19,7 @@
 ## Repository
 
 https://github.com/kdaisho/weather-app
+
+## Deployment
+
+https://weather-app-mu-five.vercel.app/
