@@ -6,18 +6,18 @@ import {
   BsFillSunFill,
 } from 'react-icons/bs'
 
-export const renderWeatherIcon = (weather: Weather) => {
+export const renderWeatherIcon = (weather: Weather, className: string) => {
   switch (weather) {
     case Weather.Clear:
-      return <BsFillSunFill className='icon' />
+      return <BsFillSunFill className={className} />
     case Weather.Clouds:
-      return <BsFillCloudsFill className='icon' />
+      return <BsFillCloudsFill className={className} />
     case Weather.Rain:
-      return <BsFillCloudRainFill className='icon' />
+      return <BsFillCloudRainFill className={className} />
     case Weather.Snow:
-      return <BsFillCloudSnowFill className='icon' />
+      return <BsFillCloudSnowFill className={className} />
     default:
-      return <BsFillCloudsFill className='icon' />
+      return <BsFillCloudsFill className={className} />
   }
 }
 

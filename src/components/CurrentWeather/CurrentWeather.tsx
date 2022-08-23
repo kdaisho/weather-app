@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react'
+import { FunctionComponent, useEffect, useState } from 'react'
 import cn from 'classnames'
 import toast from 'cogo-toast'
 import weatherService from 'src/services/api'
 import { City, CurrentWeatherType, Weather } from 'src/types'
 import { renderWeatherIcon, toastConfig } from 'src/utils'
-import './CurrentWeather.css'
+import st from './CurrentWeather.module.css'
 
-const CurrentWeather = ({ city }: { city: City }): JSX.Element => {
+const CurrentWeather: FunctionComponent<{ city: City }> = ({ city }) => {
   const [currentWeather, setCurrentWeather] = useState<CurrentWeatherType>()
   const [loading, setLoading] = useState(false)
 
@@ -22,16 +22,19 @@ const CurrentWeather = ({ city }: { city: City }): JSX.Element => {
   }, [city])
 
   return (
-    <div className='current-weather'>
+    <div className={st.current}>
       <h1>Today</h1>
-      <div className={cn('info', { blur: loading })}>
-        {renderWeatherIcon(currentWeather?.weather[0].main as Weather)}
-        <div className='temperature-weather'>
-          <p className='temperature'>
+      <div className={cn(st.info, { [st.blur]: loading })}>
+        {renderWeatherIcon(
+          currentWeather?.weather[0].main as Weather,
+          st['icon']
+        )}
+        <div className={st.weather}>
+          <p className={`${st.temperature} is-number`}>
             {Math.floor(currentWeather?.main.temp as number) || '?'}
             &#176;
           </p>
-          <p className='weather'>{currentWeather?.weather[0].main}</p>
+          <p className={st.name}>{currentWeather?.weather[0].main}</p>
         </div>
       </div>
     </div>

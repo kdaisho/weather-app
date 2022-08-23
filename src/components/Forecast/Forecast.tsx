@@ -1,10 +1,10 @@
 import { FunctionComponent, useEffect, useState } from 'react'
-import toast from 'cogo-toast'
 import cn from 'classnames'
-import { City, DayCount, ForecastType } from 'src/types'
+import toast from 'cogo-toast'
 import weatherService from 'src/services/api'
+import { City, DayCount, ForecastType } from 'src/types'
 import { extractByHour, renderWeatherIcon, toastConfig } from 'src/utils'
-import './Forecast.css'
+import st from './Forecast.module.css'
 
 const Forecast: FunctionComponent<{ city: City }> = ({ city }) => {
   const [forecast, setForecast] = useState<ForecastType>()
@@ -23,14 +23,19 @@ const Forecast: FunctionComponent<{ city: City }> = ({ city }) => {
   }, [city])
 
   return (
-    <div className='forecast'>
+    <div className={st.forecast}>
       {Array.isArray(forecast) &&
         forecast.map(item => {
           return (
-            <div key={item.dt} className={cn('each-day', { blur: loading })}>
-              <p className='day-of-week'>{item.day}</p>
-              {renderWeatherIcon(item.weather[0].main)}
-              <p className='temperature'>{Math.floor(item.main.temp)}&#176;</p>
+            <div
+              key={item.dt}
+              className={cn(st['each-day'], { [st.blur]: loading })}
+            >
+              <p className={st['day-of-week']}>{item.day}</p>
+              {renderWeatherIcon(item.weather[0].main, st.icon)}
+              <p className={`${st.temperature} is-number`}>
+                {Math.floor(item.main.temp)}&#176;
+              </p>
             </div>
           )
         })}

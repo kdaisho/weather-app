@@ -1,0 +1,41 @@
+.current {
+  align-items: center;
+  background: #edf6fb;
+  border-radius: 12px 12px 0 0;
+  flex-flow: column nowrap;
+  display: flex;
+  gap: 2rem;
+  height: 300px;
+  justify-content: center;
+}
+.current .info {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 1.5rem;
+  transform: translateY(-12px);
+}
+.current .info.blur {
+  filter: blur(0.35rem);
+}
+.current .weather {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+}
+.current .temperature {
+  font-size: 6rem;
+  line-height: 0.85;
+}
+.current .name {
+  font-size: 1.75rem;
+}
+.current .day {
+  font-size: 3rem;
+  font-weight: 300;
+}
+.current .icon {
+  font-size: 135px;
+}
+.current .icon * {
+  color: #2e4369;
+}

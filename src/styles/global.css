@@ -15,7 +15,7 @@ body * {
 button:hover {
   cursor: pointer;
 }
-.temperature {
+.is-number {
   font-family: 'Teko', 'Arial', sans-serif;
 }
 .ct-toast svg {

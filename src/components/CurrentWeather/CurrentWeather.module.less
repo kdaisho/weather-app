@@ -1,0 +1,50 @@
+@import '../../styles/variables';
+
+.current {
+  align-items: center;
+  background: @backgroundColor;
+  border-radius: 12px 12px 0 0;
+  flex-flow: column nowrap;
+  display: flex;
+  gap: 2rem;
+  height: 300px;
+  justify-content: center;
+
+  .info {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 1.5rem;
+    transform: translateY(-12px);
+
+    &.blur {
+      filter: blur(@blur);
+    }
+  }
+
+  .weather {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+  }
+
+  .temperature {
+    font-size: 6rem;
+    line-height: 0.85;
+  }
+
+  .name {
+    font-size: 1.75rem;
+  }
+
+  .day {
+    font-size: 3rem;
+    font-weight: 300;
+  }
+
+  .icon {
+    font-size: 135px;
+    * {
+      color: @accentColor;
+    }
+  }
+}
