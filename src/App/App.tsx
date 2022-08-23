@@ -5,8 +5,6 @@ import Forecast from 'src/components/Forecast'
 import { City } from 'src/types'
 import './App.css'
 
-// import sample from './sample.png'
-
 const App = (): JSX.Element => {
   const defaultLocationState = {
     selected: City.Ottawa,
@@ -27,7 +25,6 @@ const App = (): JSX.Element => {
           <Forecast city={cities.selected} />
         </div>
       </div>
-      {/* <img src={sample} className='sample' alt='Sample' /> */}
     </div>
   )
 }

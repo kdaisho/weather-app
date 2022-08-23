@@ -3,11 +3,14 @@
 body {
   height: 100vh;
   background: @backgroundColor;
-  padding-top: 3rem;
+
+  @media @largerThan600 {
+    padding-top: 2rem;
+  }
 
   * {
     color: @fontColor;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat', 'Arial', sans-serif;
     font-weight: 300;
   }
 }
@@ -19,7 +22,7 @@ button {
 }
 
 .temperature {
-  font-family: 'Teko', sans-serif;
+  font-family: 'Teko', 'Arial', sans-serif;
 }
 
 .ct-toast {

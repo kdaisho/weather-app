@@ -1,11 +1,10 @@
-// import { City } from 'src/types'
 import cn from 'classnames'
 import { FunctionComponent } from 'react'
-import { Cities, City } from 'src/types'
+import { CityState, City } from 'src/types'
 import './header.css'
 
 const Header: FunctionComponent<{
-  cities: Cities
+  cities: CityState
   handleChangeCity: (name: City) => void
 }> = ({ cities, handleChangeCity }) => {
   return (

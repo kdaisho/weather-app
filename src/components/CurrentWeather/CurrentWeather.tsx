@@ -14,10 +14,7 @@ const CurrentWeather = ({ city }: { city: City }): JSX.Element => {
     setLoading(true)
     weatherService
       .getCurrentWeatherByCityName(city)
-      .then(data => {
-        console.log({ data })
-        setCurrentWeather(data)
-      })
+      .then(data => setCurrentWeather(data))
       .catch(err => {
         toast.error(`${err.message} current weather`, toastConfig)
       })

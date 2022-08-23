@@ -1,8 +1,8 @@
-import current from 'src/services/mock.ottawa.json'
-import fiveDays from 'src/services/mock.ottawa.5days.json'
+import current from 'src/mock/ottawa.json'
+import fiveDays from 'src/mock/ottawa.5days.json'
 
 // export type Weather = typeof current.weather[0]
-export type Cities = {
+export type CityState = {
   selected: string
   list: {
     name: City
@@ -25,10 +25,10 @@ export enum City {
 
 export enum DayCount {
   One = 1,
-  Two = 2,
-  Three = 3,
-  Four = 4,
-  Five = 5,
+  Two,
+  Three,
+  Four,
+  Five,
 }
 
 export enum Hour {
@@ -43,9 +43,4 @@ export enum Weather {
   Clouds = 'Clouds',
   Rain = 'Rain',
   Snow = 'Snow',
-}
-
-export enum Error {
-  Current,
-  Forecast,
 }

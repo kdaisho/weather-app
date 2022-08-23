@@ -2,9 +2,8 @@ import { FunctionComponent, useEffect, useState } from 'react'
 import toast from 'cogo-toast'
 import cn from 'classnames'
 import { City, DayCount, ForecastType } from 'src/types'
-import { extractByHour } from './utils'
 import weatherService from 'src/services/api'
-import { renderWeatherIcon, toastConfig } from 'src/utils'
+import { extractByHour, renderWeatherIcon, toastConfig } from 'src/utils'
 import './Forecast.css'
 
 const Forecast: FunctionComponent<{ city: City }> = ({ city }) => {
