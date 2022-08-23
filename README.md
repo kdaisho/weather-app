@@ -4,9 +4,18 @@
 
 - OpenWeather (https://openweathermap.org/api)
 
+## Icons
+
+- React Icons (https://react-icons.github.io/react-icons/)
+
 ## Features
 
-- TypeSCript
+- TypeScript
 - Functional components
 - CSS Preprocessor (LESS)
+- CSS Modules
 - Unit tests
+
+## Repository
+
+https://github.com/kdaisho/weather-app
